@@ -21,20 +21,20 @@ function alphaCount(name) {
 function alphaCountTest(functionToTest) {
     console.log("Testing method = " + functionToTest.name);
     let assert = require('assert');
-    assert.equal(functionToTest(NaN), 0);
-    assert.equal(functionToTest(""), 0);
-    assert.equal(functionToTest("                      "), 0);
-    assert.equal(functionToTest("***88???????!!!!##@#$@//!!"), 0);
-    assert.equal(functionToTest("ramo"), "ramo".length);
-    assert.equal(functionToTest("Ram,o"), "Ramo".length);
-    assert.equal(functionToTest("?ananth"), "ananth".length);
-    assert.equal(functionToTest("usha***"), "usha".length);
-    assert.equal(functionToTest("usha devi"), "ushadevi".length);
-    assert.equal(functionToTest("ananth      murugan"), "ananthmurugan".length);
-    assert.equal(functionToTest("abc def xyz"), "abcdefxyz".length);
-    assert.equal(functionToTest("   usha devi"), "ushadevi".length);
-    assert.equal(functionToTest("anan****th      murug//an$$$"), "ananthmurugan".length);
-    assert.equal(functionToTest("$$$$abc def xyzxx****9(((("), "abcdefxyzxx".length);
+    assert.strictEqual(functionToTest(NaN), 0);
+    assert.strictEqual(functionToTest(""), 0);
+    assert.strictEqual(functionToTest("                      "), 0);
+    assert.strictEqual(functionToTest("***88???????!!!!##@#$@//!!"), 0);
+    assert.strictEqual(functionToTest("ramo"), "ramo".length);
+    assert.strictEqual(functionToTest("Ram,o"), "Ramo".length);
+    assert.strictEqual(functionToTest("?ananth"), "ananth".length);
+    assert.strictEqual(functionToTest("usha***"), "usha".length);
+    assert.strictEqual(functionToTest("usha devi"), "ushadevi".length);
+    assert.strictEqual(functionToTest("ananth      murugan"), "ananthmurugan".length);
+    assert.strictEqual(functionToTest("abc def xyz"), "abcdefxyz".length);
+    assert.strictEqual(functionToTest("   usha devi"), "ushadevi".length);
+    assert.strictEqual(functionToTest("anan****th      murug//an$$$"), "ananthmurugan".length);
+    assert.strictEqual(functionToTest("$$$$abc def xyzxx****9(((("), "abcdefxyzxx".length);
     console.log("All Test passes successfully!");    
 }
 

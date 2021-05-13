@@ -41,20 +41,20 @@ function sanitizeInput3(name) {
 function sanitizeInputTest(functionToTest) {
     console.log("Testing method = " + functionToTest.name);
     let assert = require('assert');
-    assert.equal(functionToTest(NaN), "");
-    assert.equal(functionToTest(""), "");
-    assert.equal(functionToTest("                      "), "");
-    assert.equal(functionToTest("***88???????!!!!##@#$@//!!"), "");
-    assert.equal(functionToTest("ramo"), "ramo");
-    assert.equal(functionToTest("Ram,o"), "Ramo");
-    assert.equal(functionToTest("?ananth"), "ananth");
-    assert.equal(functionToTest("usha***"), "usha");
-    assert.equal(functionToTest("usha devi"), "ushadevi");
-    assert.equal(functionToTest("ananth      murugan"), "ananthmurugan");
-    assert.equal(functionToTest("abc def xyz"), "abcdefxyz");
-    assert.equal(functionToTest("   usha devi"), "ushadevi");
-    assert.equal(functionToTest("anan****th      murug//an$$$"), "ananthmurugan");
-    assert.equal(functionToTest("$$$$abc def xyzxx****9(((("), "abcdefxyzxx");
+    assert.strictEqual(functionToTest(NaN), "");
+    assert.strictEqual(functionToTest(""), "");
+    assert.strictEqual(functionToTest("                      "), "");
+    assert.strictEqual(functionToTest("***88???????!!!!##@#$@//!!"), "");
+    assert.strictEqual(functionToTest("ramo"), "ramo");
+    assert.strictEqual(functionToTest("Ram,o"), "Ramo");
+    assert.strictEqual(functionToTest("?ananth"), "ananth");
+    assert.strictEqual(functionToTest("usha***"), "usha");
+    assert.strictEqual(functionToTest("usha devi"), "ushadevi");
+    assert.strictEqual(functionToTest("ananth      murugan"), "ananthmurugan");
+    assert.strictEqual(functionToTest("abc def xyz"), "abcdefxyz");
+    assert.strictEqual(functionToTest("   usha devi"), "ushadevi");
+    assert.strictEqual(functionToTest("anan****th      murug//an$$$"), "ananthmurugan");
+    assert.strictEqual(functionToTest("$$$$abc def xyzxx****9(((("), "abcdefxyzxx");
     console.log("All Test passes successfully!");
 }
 
