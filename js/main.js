@@ -1,4 +1,6 @@
 
+const NOT_A_VALID_CHARACTER = '*';
+
 function sanitizeInput(name) {
     if (!name) {
         return "";
@@ -13,9 +15,14 @@ function sanitizeInput(name) {
 function alphaWiseCount(name) {
     let result = {};
     name = sanitizeInput(name);
-    if (name) {
-        console.log("do something");
-        // logic to do it.
+    if (name) { // proper name
+        name = name.toLowerCase();
+        for (letter of name) {
+            if (!result[letter]) {
+                result[letter] = 0;
+            }
+            result[letter] += 1;
+        }
     }
     return result;
 }
@@ -65,10 +72,55 @@ function alphaWiseCountTest(functionToTest) {
     console.log("All Test passes successfully!");    
 }
 
-function flames(name1, name2) {
-    return "F - L - A - M - E - S";
-}
-
 alphaCountTest(alphaCount);
 alphaWiseCountTest(alphaWiseCount);
+
+function getFlamesCharacter(count) {
+    //TBI
+    return 'F';
+}
+
+function getValidCharacterCount(name) {
+    let count = 0;
+    for (letter of name) {
+        if (letter !== NOT_A_VALID_CHARACTER) {
+            ++count;
+        }
+    }
+    return count;
+}
+
+function flames(name1, name2) {
+    let name1Copy = name1;
+    let name2Copy = name2;
+
+    name1Copy = sanitizeInput(name1Copy).toLowerCase();
+    name2Copy = sanitizeInput(name2Copy).toLowerCase();
+
+    name1Copy = name1Copy.split('');
+    name2Copy = name2Copy.split(''); 
+    
+    for (let i = 0; i < name1Copy.length; i++) {
+        let c1 = name1Copy[i];
+        for (let j = 0; j < name2Copy.length; j++) {
+            let c2 = name2Copy[j];
+            if (c1 === c2) {
+                name1Copy[i] = NOT_A_VALID_CHARACTER;
+                name2Copy[j] = NOT_A_VALID_CHARACTER;
+            }
+        }
+    }
+
+    let flamesCount = getValidCharacterCount(name1Copy) + 
+        getValidCharacterCount(name2Copy);
+    
+    console.log(name1Copy.join(''));
+    console.log(name2Copy.join(''));
+    console.log(flamesCount);
+    let flamesCharacter = getFlamesCharacter(flamesCount);
+    console.log(flamesCharacter);
+}
+
+flames('ananth', 'usha');
+
 
