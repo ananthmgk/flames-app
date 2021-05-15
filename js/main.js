@@ -1,5 +1,8 @@
 
 const NOT_A_VALID_CHARACTER = '*';
+const FLAMES = 'FLAMES';
+
+// main methods
 
 function sanitizeInput(name) {
     if (!name) {
@@ -9,7 +12,7 @@ function sanitizeInput(name) {
     if (!matchOutput) {
         return "";
     }
-    return matchOutput.join("");
+    return matchOutput.join("").toLowerCase();
 }
 
 function alphaWiseCount(name) {
@@ -30,6 +33,74 @@ function alphaWiseCount(name) {
 function alphaCount(name) {
     return sanitizeInput(name).length;
 }
+
+function getFlamesCharacter(count) {
+	if (count === 0) {
+		return 'S';
+	} 
+	
+	let strikes = 0;
+	let flamesCopy = FLAMES.split('');
+    let flamesLetterPos = 0;
+	while (strikes < 5) {
+        console.log('strikes = ' + strikes);
+        let currentCount = 1;
+        console.log('currentCount = ' + currentCount);
+        while (currentCount !== count) {
+            if (flamesCopy[flamesLetterPos] !== NOT_A_VALID_CHARACTER) {
+                console.log('currentLetter = ' + flamesCopy[flamesLetterPos]);
+                currentCount++;
+            }
+            flamesLetterPos = (flamesLetterPos + 1) % FLAMES.length;
+            console.log('flamesLetterPos = ' + flamesLetterPos);
+
+            if (currentCount === count) {
+                flamesCopy[flamesLetterPos] = NOT_A_VALID_CHARACTER;
+                strikes++;
+            }
+        }
+	}
+    return flamesCopy;
+}
+
+function getValidCharacterCount(name) {
+    let count = 0;
+    for (letter of name) {
+        if (letter !== NOT_A_VALID_CHARACTER) {
+            ++count;
+        }
+    }
+    return count;
+}
+
+function flames(name1, name2) {
+    let name1Copy = sanitizeInput(name1).split('');
+    let name2Copy = sanitizeInput(name2).split('');
+
+    for (let i = 0; i < name1Copy.length; i++) {
+        let c1 = name1Copy[i];
+        for (let j = 0; j < name2Copy.length; j++) {
+            let c2 = name2Copy[j];
+            if (c1 === c2) {
+                name1Copy[i] = NOT_A_VALID_CHARACTER;
+                name2Copy[j] = NOT_A_VALID_CHARACTER;
+            }
+        }
+    }
+
+    let flamesCount = getValidCharacterCount(name1Copy) + 
+        getValidCharacterCount(name2Copy);
+    
+    console.log(name1Copy.join(''));
+    console.log(name2Copy.join(''));
+    console.log(flamesCount);
+    let flamesCharacter = getFlamesCharacter(flamesCount);
+    console.log(flamesCharacter);
+}
+
+
+
+// Test methdos
 
 function alphaCountTest(functionToTest) {
     console.log("Testing method = " + functionToTest.name);
@@ -72,54 +143,29 @@ function alphaWiseCountTest(functionToTest) {
     console.log("All Test passes successfully!");    
 }
 
+function sanitizeInputTest(functionToTest) {
+    console.log("Testing method = " + functionToTest.name);
+    let assert = require('assert');
+    assert.strictEqual(functionToTest(NaN), "");
+    assert.strictEqual(functionToTest(""), "");
+    assert.strictEqual(functionToTest("                      "), "");
+    assert.strictEqual(functionToTest("***88???????!!!!##@#$@//!!"), "");
+    assert.strictEqual(functionToTest("ramo"), "ramo");
+    assert.strictEqual(functionToTest("Ram,o"), "ramo");
+    assert.strictEqual(functionToTest("?ananth"), "ananth");
+    assert.strictEqual(functionToTest("usha***"), "usha");
+    assert.strictEqual(functionToTest("usha devi"), "ushadevi");
+    assert.strictEqual(functionToTest("ananth      murugan"), "ananthmurugan");
+    assert.strictEqual(functionToTest("abc def xyz"), "abcdefxyz");
+    assert.strictEqual(functionToTest("   usha devi"), "ushadevi");
+    assert.strictEqual(functionToTest("anan****th      murug//an$$$"), "ananthmurugan");
+    assert.strictEqual(functionToTest("$$$$abc def xyzxx****9(((("), "abcdefxyzxx");
+    console.log("All Test passes successfully!");
+}
+
+sanitizeInputTest(sanitizeInput);
 alphaCountTest(alphaCount);
 alphaWiseCountTest(alphaWiseCount);
-
-function getFlamesCharacter(count) {
-    //TBI
-    return 'F';
-}
-
-function getValidCharacterCount(name) {
-    let count = 0;
-    for (letter of name) {
-        if (letter !== NOT_A_VALID_CHARACTER) {
-            ++count;
-        }
-    }
-    return count;
-}
-
-function flames(name1, name2) {
-    let name1Copy = name1;
-    let name2Copy = name2;
-
-    name1Copy = sanitizeInput(name1Copy).toLowerCase();
-    name2Copy = sanitizeInput(name2Copy).toLowerCase();
-
-    name1Copy = name1Copy.split('');
-    name2Copy = name2Copy.split(''); 
-    
-    for (let i = 0; i < name1Copy.length; i++) {
-        let c1 = name1Copy[i];
-        for (let j = 0; j < name2Copy.length; j++) {
-            let c2 = name2Copy[j];
-            if (c1 === c2) {
-                name1Copy[i] = NOT_A_VALID_CHARACTER;
-                name2Copy[j] = NOT_A_VALID_CHARACTER;
-            }
-        }
-    }
-
-    let flamesCount = getValidCharacterCount(name1Copy) + 
-        getValidCharacterCount(name2Copy);
-    
-    console.log(name1Copy.join(''));
-    console.log(name2Copy.join(''));
-    console.log(flamesCount);
-    let flamesCharacter = getFlamesCharacter(flamesCount);
-    console.log(flamesCharacter);
-}
 
 flames('ananth', 'usha');
 
