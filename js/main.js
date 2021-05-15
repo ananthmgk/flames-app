@@ -153,26 +153,80 @@ function alphaWiseCountTest(functionToTest) {
     result['h'] = 1;
     assert.deepStrictEqual(functionToTest("?ananth"), result);
     
-    // result = getEmptyAlphaResult();
-    // assert.deepStrictEqual(functionToTest("usha***"), {'u': 1, 's': 1, 'h': 1, 'a': 1});
+    result = getEmptyAlphaResult();
+    result['u'] = 1;
+    result['s'] = 1;
+    result['h'] = 1;
+    result['a'] = 1;
+    assert.deepStrictEqual(functionToTest("usha***"), result);
     
-    // result = getEmptyAlphaResult();
-    // assert.deepStrictEqual(functionToTest("usha devi"), {'u': 1, 's': 1, 'h': 1, 'a': 1, 'd': 1, 'e': 1, 'v': 1, 'i': 1});
+    result = getEmptyAlphaResult();
+    result['u'] = 1;
+    result['s'] = 1;
+    result['h'] = 1;
+    result['a'] = 1;
+    result['d'] = 1;
+    result['e'] = 1;
+    result['v'] = 1;
+    result['i'] = 1;
+    assert.deepStrictEqual(functionToTest("usha devi"), result);
     
-    // result = getEmptyAlphaResult();
-    // assert.deepStrictEqual(functionToTest("ananth      murugan"), {'a': 3, 'n': 3, 't': 1, 'h': 1, 'm': 1, 'u': 2, 'r': 1, 'g': 1});
+    result = getEmptyAlphaResult();
+    result['a'] = 3;
+    result['n'] = 3;
+    result['t'] = 1;
+    result['h'] = 1;
+    result['m'] = 1;
+    result['u'] = 1;
+    result['r'] = 1;
+    result['g'] = 1;
+    assert.deepStrictEqual(functionToTest("ananth      murugan"), result);
     
-    // result = getEmptyAlphaResult();
-    // assert.deepStrictEqual(functionToTest("abc def xyz"), {'a': 1, 'b': 1, 'c': 1, 'd': 1, 'e': 1, 'f': 1, 'x': 1, 'y': 1, 'z': 1});
+    result = getEmptyAlphaResult();
+    result['a'] = 1;
+    result['b'] = 1;
+    result['c'] = 1;
+    result['d'] = 1;
+    result['e'] = 1;
+    result['f'] = 1;
+    result['x'] = 1;
+    result['y'] = 1;
+    result['z'] = 1;
+    assert.deepStrictEqual(functionToTest("abc def xyz"), result);
     
-    // result = getEmptyAlphaResult();
-    // assert.deepStrictEqual(functionToTest("   usha devi"), {'u': 1, 's': 1, 'h': 1, 'a': 1, 'd': 1, 'e': 1, 'v': 1, 'i': 1});
+    result = getEmptyAlphaResult();
+    result['u'] = 1;
+    result['s'] = 1;
+    result['h'] = 1;
+    result['a'] = 1;
+    result['d'] = 1;
+    result['e'] = 1;
+    result['v'] = 1;
+    result['i'] = 1;
+    assert.deepStrictEqual(functionToTest("   usha devi"), result);
     
-    // result = getEmptyAlphaResult();
-    // assert.deepStrictEqual(functionToTest("anan****th      murug//an$$$"), {'a': 3, 'n': 3, 't': 1, 'h': 1, 'm': 1, 'u': 2, 'r': 1, 'g': 1});
+    result = getEmptyAlphaResult();
+    result['a'] = 3;
+    result['n'] = 3;
+    result['t'] = 1;
+    result['h'] = 1;
+    result['m'] = 1;
+    result['u'] = 1;
+    result['r'] = 1;
+    result['g'] = 1;
+    assert.deepStrictEqual(functionToTest("anan****th      murug//an$$$"), result);
     
-    // result = getEmptyAlphaResult();
-    // assert.deepStrictEqual(functionToTest("$$$$abc def xyzxx****9(((("), {'a': 1, 'b': 1, 'c': 1, 'd': 1, 'e': 1, 'f': 1, 'x': 3, 'y': 1, 'z': 1});
+    result = getEmptyAlphaResult();
+    result['a'] = 1;
+    result['b'] = 1;
+    result['c'] = 1;
+    result['d'] = 1;
+    result['e'] = 1;
+    result['f'] = 1;
+    result['x'] = 3;
+    result['y'] = 1;
+    result['z'] = 1;
+    assert.deepStrictEqual(functionToTest("$$$$abc def xyzxx****9(((("), result);
     
     console.log("All Test passes successfully!");    
 }
