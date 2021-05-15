@@ -1,5 +1,5 @@
 
-const RUN_TESTS = false;
+const RUN_TESTS = true;
 const FLAMES = 'FLAMES';
 const ALPHABETS = 'abcdefghijklmnopqrstuvwxyz';
 const FLAMES_RESULT = {
@@ -142,6 +142,7 @@ function alphaWiseCountTest(functionToTest) {
     result['v'] = 1;
     result['i'] = 1;
     assert.deepStrictEqual(functionToTest("usha devi"), result);
+    assert.deepStrictEqual(functionToTest("   usha devi"), result);
     
     result = getEmptyAlphaResult();
     result['a'] = 3;
@@ -149,10 +150,11 @@ function alphaWiseCountTest(functionToTest) {
     result['t'] = 1;
     result['h'] = 1;
     result['m'] = 1;
-    result['u'] = 1;
+    result['u'] = 2;
     result['r'] = 1;
     result['g'] = 1;
     assert.deepStrictEqual(functionToTest("ananth      murugan"), result);
+    assert.deepStrictEqual(functionToTest("anan****th      murug//an$$$"), result);
     
     result = getEmptyAlphaResult();
     result['a'] = 1;
@@ -165,28 +167,6 @@ function alphaWiseCountTest(functionToTest) {
     result['y'] = 1;
     result['z'] = 1;
     assert.deepStrictEqual(functionToTest("abc def xyz"), result);
-    
-    result = getEmptyAlphaResult();
-    result['u'] = 1;
-    result['s'] = 1;
-    result['h'] = 1;
-    result['a'] = 1;
-    result['d'] = 1;
-    result['e'] = 1;
-    result['v'] = 1;
-    result['i'] = 1;
-    assert.deepStrictEqual(functionToTest("   usha devi"), result);
-    
-    result = getEmptyAlphaResult();
-    result['a'] = 3;
-    result['n'] = 3;
-    result['t'] = 1;
-    result['h'] = 1;
-    result['m'] = 1;
-    result['u'] = 1;
-    result['r'] = 1;
-    result['g'] = 1;
-    assert.deepStrictEqual(functionToTest("anan****th      murug//an$$$"), result);
     
     result = getEmptyAlphaResult();
     result['a'] = 1;
