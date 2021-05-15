@@ -1,7 +1,15 @@
 
-const NOT_A_VALID_CHARACTER = '*';
+const RUN_TESTS = false;
 const FLAMES = 'FLAMES';
 const ALPHABETS = 'abcdefghijklmnopqrstuvwxyz';
+const FLAMES_RESULT = {
+    'F': 'Friendship',
+    'L': 'Love',
+    'A': 'Affection',
+    'M': 'Marriage',
+    'E': 'Enemies',
+    'S': 'Siblings'
+}
 
 // main methods
 
@@ -31,68 +39,42 @@ function alphaCount(name) {
     return sanitizeInput(name).length;
 }
 
-function getFlamesCharacter(count) {
+function countFlames(count) {
 	if (count === 0) {
-		return 'S';
+		return 'F';
 	} 
-
     let flamesCopy = FLAMES.split('');
-	
+    // START_IDX + (COUNT - 1) % SIZE_OF(FLAMES_ARRAY)
+    let start_idx = 0;
+    while (flamesCopy.length > 1) {
+        start_idx = (start_idx + count - 1) % flamesCopy.length;
+        flamesCopy.splice(start_idx, 1);
+    }
+    return flamesCopy[0];
 }
 
-function getValidCharacterCount(name) {
-    let count = 0;
-    for (letter of name) {
-        if (letter !== NOT_A_VALID_CHARACTER) {
-            ++count;
-        }
+function getEmptyAlphaResult() {
+    let result = {};
+    for (let c of ALPHABETS) {
+        result[c] = 0;
     }
-    return count;
+    return result;
 }
 
 function getUnCommonCharactersCount(name1, name2) {
     let alpha1 = alphaWiseCount(name1);
     let alpha2 = alphaWiseCount(name2);
-
     let count = 0;
     for (let c of ALPHABETS) {
-        let v1 = alpha1[c] || 0;
-        let v2 = alpha2[c] || 0;
-        count += Math.abs(v1 - v2);
+        count += Math.abs(alpha1[c] - alpha2[c]);
     }
     return count;
 }
 
-function getUnCommonCharactersCount0(name1, name2) {
-    let name1Copy = sanitizeInput(name1).split('');
-    let name2Copy = sanitizeInput(name2).split('');
-
-    for (let i = 0; i < name1Copy.length; i++) {   
-        let c1 = name1Copy[i];
-        for (let j = 0; j < name2Copy.length; j++) { 
-            let c2 = name2Copy[j];
-            if (c1 === c2) {
-                name1Copy[i] = NOT_A_VALID_CHARACTER;
-                name2Copy[j] = NOT_A_VALID_CHARACTER;
-                break;
-            }
-        }
-    }
-
-    console.log(name1Copy.join(''));
-    console.log(name2Copy.join(''));
-
-    return getValidCharacterCount(name1Copy) + getValidCharacterCount(name2Copy);
-}
-
-
-
-
 function flames(name1, name2) {
     let commonCharactersCount = getUnCommonCharactersCount(name1, name2);
-    console.log(commonCharactersCount);
-    let flamesCharacter = getFlamesCharacter(commonCharactersCount);
-    console.log(flamesCharacter);
+    let flamesCharacter = countFlames(commonCharactersCount);
+    return FLAMES_RESULT[flamesCharacter];
 }
 
 
@@ -118,16 +100,6 @@ function alphaCountTest(functionToTest) {
     assert.strictEqual(functionToTest("$$$$abc def xyzxx****9(((("), "abcdefxyzxx".length);
     console.log("All Test passes successfully!");    
 }
-
-
-function getEmptyAlphaResult() {
-    let result = {};
-    for (let c of ALPHABETS) {
-        result[c] = 0;
-    }
-    return result;
-}
-
 
 function alphaWiseCountTest(functionToTest) {
     console.log("Testing method = " + functionToTest.name);
@@ -269,12 +241,13 @@ function getUnCommonCharactersCountTest(functionToTest) {
     console.log("All Test passes successfully!");
 }
 
+if (RUN_TESTS) {
+    sanitizeInputTest(sanitizeInput);
+    alphaCountTest(alphaCount);
+    alphaWiseCountTest(alphaWiseCount);
+    getUnCommonCharactersCountTest(getUnCommonCharactersCount);    
+}
 
-sanitizeInputTest(sanitizeInput);
-alphaCountTest(alphaCount);
-alphaWiseCountTest(alphaWiseCount);
-getUnCommonCharactersCountTest(getUnCommonCharactersCount);
-
-// flames('ananth', 'aaaa');
-
-
+let name1 = 'Ananth'
+let name2 = 'Usha'
+console.log(`Relationship between ${name1} and ${name2} is "${flames(name1, name2)}"`);

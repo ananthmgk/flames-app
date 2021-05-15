@@ -1,3 +1,5 @@
+const NOT_A_VALID_CHARACTER = '*';
+
 function sanitizeInput(name) {
     if (name) {
         return name.replace(/[\s\d&\/\\#,+()$~%.'":*?<>{}!@]/g, '');
@@ -57,6 +59,40 @@ function sanitizeInputTest(functionToTest) {
     assert.strictEqual(functionToTest("$$$$abc def xyzxx****9(((("), "abcdefxyzxx");
     console.log("All Test passes successfully!");
 }
+
+function getUnCommonCharactersCount0(name1, name2) {
+    let name1Copy = sanitizeInput(name1).split('');
+    let name2Copy = sanitizeInput(name2).split('');
+
+    for (let i = 0; i < name1Copy.length; i++) {   
+        let c1 = name1Copy[i];
+        for (let j = 0; j < name2Copy.length; j++) { 
+            let c2 = name2Copy[j];
+            if (c1 === c2) {
+                name1Copy[i] = NOT_A_VALID_CHARACTER;
+                name2Copy[j] = NOT_A_VALID_CHARACTER;
+                break;
+            }
+        }
+    }
+
+    console.log(name1Copy.join(''));
+    console.log(name2Copy.join(''));
+
+    return getValidCharacterCount(name1Copy) + getValidCharacterCount(name2Copy);
+}
+
+function getValidCharacterCount(name) {
+    let count = 0;
+    for (letter of name) {
+        if (letter !== NOT_A_VALID_CHARACTER) {
+            ++count;
+        }
+    }
+    return count;
+}
+
+
 
 sanitizeInputTest(sanitizeInput);
 sanitizeInputTest(sanitizeInput2);
