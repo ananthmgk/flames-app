@@ -93,7 +93,64 @@ function getValidCharacterCount(name) {
 }
 
 
+function toFlamesStringBySwitchCase(flamesCharacter) {
+    let flamesStr = "";
+    switch(flamesCharacter) {
+      case "F":
+        flamesStr = "Friends";
+        break;
+      case "L":
+        flamesStr = "Love";
+        break;
+      case "A":
+        flamesStr = "Affection";
+        break;
+        case "M":
+        flamesStr = "Marriage";
+        break;
+      case "E":
+        flamesStr = "Enemies";
+        break;
+      case "S":
+        flamesStr = "Siblings";
+        break;
+    } 
+    return flamesStr;
+  }
+   
+  
+function toFlamesStringByIfElseLoop(flamesCharacter) {
+    let flamesStr = "";
+    if (flamesCharacter == 'F') {
+        flamesStr = "Friends";
+    } else if (flamesCharacter == 'L') {
+        flamesStr = "Love";
+    } else if (flamesCharacter == 'A') {
+        flamesStr = "Affection"
+    } else if (flamesCharacter == 'M') {
+        flamesStr = "Marriage"
+    } else if (flamesCharacter == 'E') {
+        flamesStr = "Enemies"
+    } else {
+        flamesStr = "Siblings"
+    }
+    return flamesStr;
+} 
 
+function toFlamesStringTest(functionToTest) {
+    console.log("Testing method = " + functionToTest.name);
+    let assert = require('assert');
+    assert.strictEqual(functionToTest('F'), 'Friends');
+    assert.strictEqual(functionToTest('L'), 'Love');
+    assert.strictEqual(functionToTest('A'), 'Affection');
+    assert.strictEqual(functionToTest('M'), 'Marriage');
+    assert.strictEqual(functionToTest('E'), 'Enemies');
+    assert.strictEqual(functionToTest('S'), 'Siblings');
+    console.log("All Test passes successfully!");
+}
+
+toFlamesStringTest(toFlamesStringByIfElseLoop);
+toFlamesStringTest(toFlamesStringBySwitchCase);
 sanitizeInputTest(sanitizeInput);
 sanitizeInputTest(sanitizeInput2);
 sanitizeInputTest(sanitizeInput3);
