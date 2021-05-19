@@ -5,11 +5,45 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Flames App</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <!-- <link rel='stylesheet' type='text/css' media='screen' href='main.css'> -->
+    <link rel='stylesheet' type='text/css' media='screen' href='css/main.css'>
     <script src='js/main.js'></script>
+    <script type="text/javascript">
+        function findMatch() {
+            let name1 = document.getElementById('name1').value;
+            let name2 = document.getElementById('name2').value;
+            if (!name1 || !name2) {
+                alert('Please enter your name and your partner name to find match');
+                return;
+            }
+            let matchResult = flames(name1, name2);
+            let resultElement = document.getElementById('result');
+            resultElement.innerHTML = `<h3> Your match result is "${matchResult}" </h3>` ; 
+        }
+        function reset() {
+            document.getElementById('name1').value = "";
+            document.getElementById('name2').value = "";
+            document.getElementById('result').innerHTML = "";
+        }
+    </script>
 </head>
 <body>
-    <h1> Hello world! </h1>
-    
+    <h2>Flames</h2><br>    
+    <div id="main">    
+        <label><b>Your Name
+        </b>    
+        </label>    
+        <input type="text" name="name1" id="name1">    
+        <br><br>    
+        <label><b>Partner Name
+        </b>    
+        </label>    
+        <input type="text" name="name2" id="name2">    
+        <br><br>    
+        <input type="button" onclick="findMatch()" name="find" id="find" value="Find Match">       
+        <input type="button" onclick="reset()" name="reset" id="reset" value="Reset">       
+        <br><br>    
+        <div id="result">
+        </div>    
+    </div>
 </body>
 </html>

@@ -1,0 +1,62 @@
+    body  
+    {  
+        margin: 0;  
+        padding: 0;  
+        background-color:#242524ba;  
+        font-family: 'Arial';  
+    }  
+    #main{  
+            width: 382px;  
+            overflow: hidden;  
+            margin: auto;  
+            margin: 20 0 0 450px;  
+            padding: 80px;  
+            background: #23463f;  
+            border-radius: 15px ;  
+              
+    }  
+    h2{  
+        text-align: center;  
+        color: white;  
+        padding: 20px;  
+    }  
+    label{  
+        color: #08ff52fb;  
+        font-size: 17px;  
+    }  
+    #name1{  
+        width: 300px;  
+        height: 30px;  
+        border: none;  
+        border-radius: 3px;  
+        padding-left: 8px;  
+    }  
+    #name2{  
+        width: 300px;  
+        height: 30px;  
+        border: none;  
+        border-radius: 3px;  
+        padding-left: 8px;  
+          
+    }  
+    #find{  
+        width: 100px;  
+        height: 30px;  
+        border: none;  
+        border-radius: 17px;  
+        padding-left: 7px;  
+        color: blue;
+    }  
+    #reset{  
+        width: 100px;  
+        height: 30px;  
+        border: none;  
+        border-radius: 17px;  
+        padding-left: 7px;  
+        color: blue;
+    }
+    
+    #result {
+        color: #08ff52fb;
+    }
+
